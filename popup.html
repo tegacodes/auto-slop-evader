@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: "Shlop";
+        src: url("shlop.otf") format("opentype");
+      }
+      body {
+        width: 400px;
+        padding: 15px;
+        font-family: Arial, san-serif;
+        background-image: url("blob.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      h2 {
+        font-family: Shlop, sans-serif;
+        letter-spacing: 2px;
+        font-size: 4em;
+        margin-top: 0;
+        margin-bottom: 5px;
+        color: #fff88a;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        text-shadow: -1px -1px 0 #000,  
+               1px -1px 0 #000,
+               -1px 1px 0 #000,
+               1px 1px 0 #000;
+      }
+      h2 img {
+        height: 40px;
+        width: auto;
+      }
+      h3 {
+        margin-top: 0;
+
+        font-weight: normal;
+        font-size: 12px;
+        font-style: italic;
+        margin-bottom: 12px;
+        color: white;
+        text-align: center;
+      }
+      h4 a{
+        margin-top: 0;
+        font-weight: normal;
+        font-size: 12px;
+        margin-bottom: 12px;
+        color: white;
+       position: absolute;
+       bottom: 0px; 
+       right: 15px;
+      }
+      .search-item {
+        margin-bottom: 12px;
+      }
+      .search-item label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: bold;
+        font-size: 13px;
+        color: #555;
+      }
+      .search-row {
+        display: flex;
+        gap: 8px;
+      }
+      input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* font-family: Times, serif; */
+        font-size: 14px;
+      }
+      input:focus {
+        outline: none;
+        border-color: #ffe600;
+      }
+      button {
+        padding: 8px 16px;
+        /* background-color: #ffff9d; */
+        background-color: #fff88a;
+        color: #401314;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+      button:hover {
+        background-color: #ffe600;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>
+      <!-- <img src="logo7.png" alt="Logo" /> -->
+      Slop Evader
+      <!-- <img src="logo7.png" alt="Logo" /> -->
+    </h2>
+    <h3>Search before Nov 30th 2022:</h3>
+    <div class="search-item">
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          data-site="google"
+          placeholder="Search Google..."
+        />
+  
+      </div>
+    </div>
+        <div class="search-item">
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          data-site="duckduckgo"
+          placeholder="Search DuckDuckGo..."
+        />
+        <button class="go-btn" data-site="duckduckgo">▶</button>
+      </div>
+    </div>
+    <div class="search-item">
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          data-site="reddit"
+          placeholder="Search Reddit..."
+        />
+        <button class="go-btn" data-site="reddit">▶</button>
+      </div>
+    </div>
+    <div class="search-item">
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          data-site="quora"
+          placeholder="Search Quora..."
+        />
+        <button class="go-btn" data-site="quora">▶</button>
+      </div>
+    </div>
+    <div class="search-item">
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          data-site="stackexchange"
+          placeholder="Search Stack Exchange..."
+        />
+        <button class="go-btn" data-site="stackexchange">▶</button>
+      </div>
+    </div>
+    <div class="search-item">
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          data-site="pinterest"
+          placeholder="Search Pinterest..."
+        />
+        <button class="go-btn" data-site="pinterest">▶</button>
+      </div>
+    </div>
+    <div class="search-item">
+  <div class="search-row">
+    <input
+      type="text"
+      class="search-input"
+      data-site="youtube"
+      placeholder="Search YouTube..."
+    />
+    <button class="go-btn" data-site="youtube">▶</button>
+  </div>
+</div>
+<label>
+  <input type="checkbox" id="autoMode">
+  Auto Browse Mode
+</label>
+
+    
+   <h2>
+      <img src="logo9.png" alt="Logo" />
+      </h2>
+      <h4><a href="https://tegabrain.com/Slop-Evader">About ↗</a></h4>
+   </body>
+    <script src="popup.js"></script>
+  </body>
+</html>
