@@ -21,11 +21,25 @@ const AUTO_KEYWORDS = [
   "Are the coral reefs being bleached?", 
   "Chernobyl reactor 4 damage", 
   "Gaza airstrike aftermath", 
-  "Tiananmen Square 1989 tank man"
-
- 
-
-
+  "Tiananmen Square 1989 tank man", 
+  "how do i fix a running toilet?",
+  "what do i do if i get arrested at a protest?",
+  "deepwater horizon oil spill shoreline birds",
+  "swiss glaciers before and after",
+  "jan 6 capitol interior photographs”,
+  "what do death cap mushrooms look like?",
+  "what do edible mushrooms look like?",
+  "how do i identify false morel mushrooms?",
+  "what do i do if i get stung by a sting ray?",
+  "what does a reef stonefish look like?",
+  "how do i get my baby to take paracetamol?",
+  "how do i fix my gut health?",
+  "how do i get my teenager to talk to me?",
+  "what are the sexual misconduct allegations against Donald Trump?",
+  "how do i help my baby poop?",
+  "how do i help my dog with separation anxiety?",
+  "how do i help someone with depression?",
+  "how to identify a lorazepam pill", 
 ];
 
 const SITES = [
