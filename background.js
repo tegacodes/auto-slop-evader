@@ -26,7 +26,7 @@ const AUTO_KEYWORDS = [
   "what do i do if i get arrested at a protest?",
   "deepwater horizon oil spill shoreline birds",
   "swiss glaciers before and after",
-  "jan 6 capitol interior photographs”,
+  "jan 6 capitol interior photographs",
   "what do death cap mushrooms look like?",
   "what do edible mushrooms look like?",
   "how do i identify false morel mushrooms?",
