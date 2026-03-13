@@ -1,11 +1,31 @@
 const AUTO_KEYWORDS = [
-  "climate change",
-  "machine learning",
-  "cybernetics",
-  "data art",
-  "AI ethics",
-  "blockchain",
-  "neural networks",
+  "How do I get the cheese to stick to my pizza?",
+  "How do I get my baby to nap?",
+  "How many rocks should I eat?",
+  "Is there such a thing as AI ethics?",
+  "what's the best haircut for women?",
+  "Show me some footage of the January 6th riots",
+  "Hurricane Katrina aftermath",
+  "Chernobyl reactor damage",
+  "How do I fix the p-trap under my sink", 
+  "How do I make money?",
+  "What does melonoma look like?",
+  "how do i get rid of hiccups",
+  "what's the best way to boil an egg?", 
+  "what's the best sleeping position?", 
+  "whats the best frozen pizza?",
+  "what does asbestos look like?", 
+  "How do I tell my mum that I love her?", 
+  "How do I get my child to go to bed?", 
+  "What does poison ivy look like?", 
+  "Are the coral reefs being bleached?", 
+  "Chernobyl reactor 4 damage", 
+  "Gaza airstrike aftermath", 
+  "Tiananmen Square 1989 tank man"
+
+ 
+
+
 ];
 
 const SITES = [
@@ -21,6 +41,10 @@ const SITES = [
 let autoMode = false;
 let currentSiteIndex = 0;
 
+let visualPopupId = null;
+
+let browsingWindowId = null;
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ autoMode: false });
 });
@@ -28,7 +52,10 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.storage.onChanged.addListener((changes) => {
   if (changes.autoMode) {
     autoMode = changes.autoMode.newValue;
-    if (autoMode) autoLoop();
+
+    if (autoMode) {
+      autoLoop();
+    }
   }
 });
 
@@ -69,36 +96,93 @@ function autoLoop() {
   const keyword = getRandomKeyword();
   const site = SITES[currentSiteIndex];
 
-  // Save for popup display
   chrome.storage.local.set({
     lastKeyword: keyword,
-    lastSite: site,
+    lastSite: site
   });
-
-  // Open theatrical popup window
-  openVisualPopup();
 
   const url = buildSearchUrl(site, keyword);
 
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (tabs.length > 0) {
-      chrome.tabs.update(tabs[0].id, { url });
-    }
-  });
-  currentSiteIndex = (currentSiteIndex + 1) % SITES.length;
+  // show control panel
+  openVisualPopup();
 
-  setTimeout(autoLoop, 15000);
+  // wait for typing animation
+  setTimeout(() => {
+
+    if (browsingWindowId === null) {
+
+      openBrowsingWindow(url);
+
+    } else {
+
+      chrome.tabs.query({ windowId: browsingWindowId }, (tabs) => {
+
+        if (tabs.length > 0) {
+          chrome.tabs.update(tabs[0].id, { url });
+        } else {
+          openBrowsingWindow(url);
+        }
+
+      });
+
+    }
+
+    currentSiteIndex = (currentSiteIndex + 1) % SITES.length;
+
+    const delay = 5000 + Math.random() * 5000;
+    setTimeout(autoLoop, delay);
+
+  }, 3500); // time for typing animation
 }
+
 
 function openVisualPopup() {
-  chrome.windows.create({
-    url: chrome.runtime.getURL("popup.html"),
-    type: "popup",
-    width: 420,
-    height: 700,
-  });
+
+  if (visualPopupId !== null) {
+    chrome.windows.remove(visualPopupId, () => {
+      chrome.runtime.lastError;
+    });
+  }
+
+  chrome.windows.create(
+    {
+      url: chrome.runtime.getURL("popup.html"),
+      type: "popup",
+      width: 450,
+      height: 550,
+      left: 1470,
+      top: 20
+    },
+    (win) => {
+      if (win) {
+        visualPopupId = win.id;
+         // bring control panel to front
+        chrome.windows.update(visualPopupId, { focused: true });
+      }
+    }
+  );
 }
 
-//TO DO
-// CONTROL FOR POPUP WINDOW SIZE AND PLACEMENT
-//PUT AUTOTYPING THE KEYWORD BACK IN
+chrome.windows.onRemoved.addListener((id) => {
+  if (id === visualPopupId) {
+    visualPopupId = null;
+  }
+});
+
+function openBrowsingWindow(url) {
+  chrome.windows.create(
+    {
+      url: url,
+      type: "normal",
+      width: 1400,
+      height: 900,
+      left: 100,
+      top: 100
+    },
+    (win) => {
+      if (win) {
+        browsingWindowId = win.id;
+      }
+    }
+  );
+}
